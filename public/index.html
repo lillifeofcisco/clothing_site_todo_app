@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Drop Culture — Ops Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand-mark">
+    <span class="brand-mark__punch"></span>
+    <span class="brand-mark__text">DROP CULTURE</span>
+  </div>
+  <span class="topbar__label">OPS BOARD</span>
+</header>
+
+<main class="board">
+
+  <section class="board__intake">
+    <h1 class="intake__title">Log a task</h1>
+    <form id="task-form" class="intake-form">
+      <input type="text" id="title" placeholder="What needs doing?" required maxlength="120" />
+
+      <div class="intake-form__row">
+        <select id="category">
+          <option value="orders">Orders</option>
+          <option value="restock">Restock</option>
+          <option value="posts">Posts</option>
+          <option value="general" selected>General</option>
+        </select>
+
+        <select id="priority">
+          <option value="high">High</option>
+          <option value="medium" selected>Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <input type="date" id="due_date" />
+      </div>
+
+      <textarea id="notes" placeholder="Notes (SKU, buyer handle, caption draft, etc.)" maxlength="500" rows="2"></textarea>
+
+      <button type="submit">Add to board</button>
+    </form>
+  </section>
+
+  <section class="board__filters" aria-label="Filter tasks">
+    <button class="filter-tab is-active" data-filter-category="">All</button>
+    <button class="filter-tab" data-filter-category="orders">Orders</button>
+    <button class="filter-tab" data-filter-category="restock">Restock</button>
+    <button class="filter-tab" data-filter-category="posts">Posts</button>
+    <button class="filter-tab" data-filter-category="general">General</button>
+  </section>
+
+  <section class="board__lanes">
+    <div class="lane" data-status="todo">
+      <h2 class="lane__title">To Do <span class="lane__count" id="count-todo">0</span></h2>
+      <div class="lane__cards" id="cards-todo"></div>
+    </div>
+    <div class="lane" data-status="in_progress">
+      <h2 class="lane__title">In Progress <span class="lane__count" id="count-in_progress">0</span></h2>
+      <div class="lane__cards" id="cards-in_progress"></div>
+    </div>
+    <div class="lane" data-status="done">
+      <h2 class="lane__title">Done <span class="lane__count" id="count-done">0</span></h2>
+      <div class="lane__cards" id="cards-done"></div>
+    </div>
+  </section>
+
+  <p class="board__empty" id="empty-state" hidden>Board's clear. Add the next task above.</p>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
